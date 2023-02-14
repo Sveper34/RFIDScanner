@@ -8,7 +8,7 @@
     <string name="nav_header_desc">Заголовок навигации</string>
     <string name="action_settings">Настройки</string>
 
-    <string name="menu_home">Домой</string>
+    <string name="rfid_title">Сканирование RFID меток</string>
     <string name="menu_gallery">Галерея</string>
     <string name="menu_slideshow">Слайдшоу</string>
     <string name="title_activity_login">Авторизация</string>
