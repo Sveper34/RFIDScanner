@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arktika.rfidscanner.MainActivity;
 import com.arktika.rfidscanner.R;
 import com.arktika.rfidscanner.ui.login.LoginViewModel;
 import com.arktika.rfidscanner.ui.login.LoginViewModelFactory;
@@ -126,8 +128,14 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+
+        Intent intent =getIntent();
+        Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+        //myIntent.putExtra("key", value); //Optional parameters
+        LoginActivity.this.startActivity(myIntent);
+        // TODO : initiate successful logged in experience
+
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
