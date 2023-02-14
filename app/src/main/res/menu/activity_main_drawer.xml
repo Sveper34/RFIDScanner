@@ -12,9 +12,10 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_find_replace_rfid"
             android:title="@string/rfid_replacement" />
-        <item
+       <!-- <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+            -->
     </group>
 </menu>
