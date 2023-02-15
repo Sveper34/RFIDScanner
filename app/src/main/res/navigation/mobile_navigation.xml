@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.arktika.rfidscanner.ui.home.HomeFragment"
+        android:name="com.arktika.rfidscanner.ui.home.SearchFragment"
         android:label="@string/rfid_scaner_title"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/nav_find_replace_rfid"
-        android:name="com.arktika.rfidscanner.ui.gallery.GalleryFragment"
+        android:name="com.arktika.rfidscanner.ui.gallery.FindReplaceFragment"
         android:label="@string/rfid_replacement"
         tools:layout="@layout/fragment_find_replace" />
 
     <fragment
         android:id="@+id/nav_link_rfid"
-        android:name="com.arktika.rfidscanner.ui.slideshow.SlideshowFragment"
+        android:name="com.arktika.rfidscanner.ui.Link.LinkFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_link" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.arktika.rfidscanner.ui.slideshow;
+package com.arktika.rfidscanner.ui.Link;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.arktika.rfidscanner.databinding.FragmentSlideshowBinding;
+import com.arktika.rfidscanner.databinding.FragmentLinkBinding;
 
-public class SlideshowFragment extends Fragment {
+public class LinkFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentLinkBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        linkViewModel linkViewModel =
+                new ViewModelProvider(this).get(linkViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentLinkBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        linkViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
