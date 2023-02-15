@@ -5,17 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_search"
             android:icon="@drawable/ic_search_rfid"
             android:title="@string/rfid_scaner_title" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_find_replace_rfid"
             android:icon="@drawable/ic_find_replace_rfid"
             android:title="@string/rfid_replacement" />
-       <!-- <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+        <item
+            android:id="@+id/nav_link_rfid"
+            android:icon="@drawable/ic_link_rfid"
             android:title="@string/menu_slideshow" />
-            -->
+
     </group>
 </menu>
