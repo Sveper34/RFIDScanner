@@ -1,4 +1,4 @@
-package com.arktika.rfidscanner.ui.gallery;
+package com.arktika.rfidscanner.ui.FindReplace;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
