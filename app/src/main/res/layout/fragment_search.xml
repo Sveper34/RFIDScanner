@@ -7,7 +7,7 @@
     tools:context=".ui.Search.SearchFragment">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btClear"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="141dp"
         android:layout_height="43dp"
@@ -19,4 +19,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSearchtitle"
+        android:layout_width="72dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="56dp"
+        android:text="Барабан"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRfidMetkaTitle"
+        android:layout_width="72dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:text="Метка"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle" />
+
+    <TextView
+        android:id="@+id/tvSearchRFidtitle"
+        android:layout_width="91dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSearchtitle"
+        app:layout_constraintStart_toEndOf="@+id/tvSearchtitle"
+        app:layout_constraintTop_toTopOf="@+id/tvSearchtitle" />
+
+    <TextView
+        android:id="@+id/tvRfidMetka"
+        android:layout_width="96dp"
+        android:layout_height="34dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRfidMetkaTitle"
+        app:layout_constraintStart_toEndOf="@+id/tvRfidMetkaTitle"
+        app:layout_constraintTop_toTopOf="@+id/tvRfidMetkaTitle"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

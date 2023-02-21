@@ -9,8 +9,8 @@
     <string name="action_settings">Настройки</string>
 
     <string name="rfid_scaner_title">Сканирование RFID меток</string>
-    <string name="rfid_replacement">Замена RFID меток</string>
-    <string name="menu_link">Слайдшоу</string>
+    <string name="rfid_replacement">Замена RFID меток у барабана</string>
+    <string name="menu_link">Привязка RFID к барабану</string>
     <string name="title_activity_login">Авторизация</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Пароль</string>
