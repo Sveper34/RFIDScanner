@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.arktika.rfidscanner.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+    public final static String BROADCAST_ACTION = "com.ubx.scan.rfid";//Широковешательное сообщение для сканера Urovo dt50
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     @Override

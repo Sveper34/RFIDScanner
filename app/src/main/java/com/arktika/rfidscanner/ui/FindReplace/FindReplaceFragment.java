@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.arktika.rfidscanner.MainActivity;
 import com.arktika.rfidscanner.databinding.FragmentFindReplaceBinding;
 
 import java.util.concurrent.ExecutorService;
@@ -25,7 +26,6 @@ public class FindReplaceFragment extends Fragment {
 
     private FragmentFindReplaceBinding binding;
     private BroadcastReceiver brRfid;//Прием широковешательных сообщений от сканирование штрихкода
-    public final static String BROADCAST_ACTION = "com.ubx.scan.rfid";//Широковешательное сообщение для сканера Urovo dt50
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         FindReplaceViewModel findReplaceViewModel =
@@ -75,7 +75,7 @@ public class FindReplaceFragment extends Fragment {
                 //   tvNumberDate.setText(barcode);
             }
         };
-        IntentFilter intFilt = new IntentFilter(BROADCAST_ACTION);
+        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
         //Context context = getContext();
         getContext().registerReceiver(brRfid, intFilt);
         return root;

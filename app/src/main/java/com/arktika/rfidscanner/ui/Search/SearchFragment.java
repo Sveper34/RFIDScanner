@@ -31,7 +31,6 @@ public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
     private BroadcastReceiver brRfid;//Прием широковешательных сообщений от сканирование штрихкода
-    public final static String BROADCAST_ACTION = "com.ubx.scan.rfid";//Широковешательное сообщение для сканера Urovo dt50
     TextView tvSearchRFidtitle;
     TextView tvRfidMetka;
     ProgressBar pbSearch;
@@ -89,7 +88,7 @@ public class SearchFragment extends Fragment {
                 //   tvNumberDate.setText(barcode);
             }
         };
-        IntentFilter intFilt = new IntentFilter(BROADCAST_ACTION);
+        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
         //Context context = getContext();
         getContext().registerReceiver(brRfid, intFilt);
         //final TextView textView = binding.textHome;
