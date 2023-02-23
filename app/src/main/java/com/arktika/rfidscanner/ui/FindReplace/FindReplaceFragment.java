@@ -5,22 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.arktika.rfidscanner.MainActivity;
 import com.arktika.rfidscanner.databinding.FragmentFindReplaceBinding;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class FindReplaceFragment extends Fragment {
 
@@ -76,7 +68,6 @@ public class FindReplaceFragment extends Fragment {
             }
         };
         IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
-        //Context context = getContext();
         getContext().registerReceiver(brRfid, intFilt);
         return root;
     }
