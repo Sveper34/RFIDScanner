@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.Search.SearchFragment">
 
+    <ProgressBar
+        android:id="@+id/loadingSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
     <Button
         android:id="@+id/btClear"
         style="@style/Widget.Material3.Button.ElevatedButton"
@@ -22,10 +36,10 @@
 
     <TextView
         android:id="@+id/tvSearchtitle"
-        android:layout_width="72dp"
-        android:layout_height="32dp"
+        android:layout_width="73dp"
+        android:layout_height="21dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="36dp"
         android:text="Барабан"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,28 +47,30 @@
     <TextView
         android:id="@+id/tvRfidMetkaTitle"
         android:layout_width="72dp"
-        android:layout_height="34dp"
+        android:layout_height="20dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:text="Метка"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvSearchRFidtitle"
-        android:layout_width="91dp"
-        android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSearchtitle"
-        app:layout_constraintStart_toEndOf="@+id/tvSearchtitle"
-        app:layout_constraintTop_toTopOf="@+id/tvSearchtitle" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/tvSearchtitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvRfidMetka"
-        android:layout_width="96dp"
-        android:layout_height="34dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvRfidMetkaTitle"
-        app:layout_constraintStart_toEndOf="@+id/tvRfidMetkaTitle"
-        app:layout_constraintTop_toTopOf="@+id/tvRfidMetkaTitle"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

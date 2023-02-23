@@ -4,11 +4,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +24,9 @@ import com.arktika.rfidscanner.MainActivity;
 import com.arktika.rfidscanner.R;
 import com.arktika.rfidscanner.databinding.FragmentSearchBinding;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
@@ -27,6 +34,7 @@ public class SearchFragment extends Fragment {
     public final static String BROADCAST_ACTION = "com.ubx.scan.rfid";//Широковешательное сообщение для сканера Urovo dt50
     TextView tvSearchRFidtitle;
     TextView tvRfidMetka;
+    ProgressBar pbSearch;
     Button BtClear;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,21 +43,31 @@ public class SearchFragment extends Fragment {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        tvSearchRFidtitle = (TextView) root.findViewById(R.id.tvSearchRFidtitle);
+        tvRfidMetka = (TextView)  root.findViewById(R.id.tvRfidMetka);
+        BtClear= (Button)  root.findViewById(R.id.btClear);
+        pbSearch = (ProgressBar)  root.findViewById(R.id.loadingSearch);
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                /* AsyncTask.execute(new Runnable() {
+                pbSearch.setVisibility(View.VISIBLE);
+
+                ExecutorService executor = Executors.newSingleThreadExecutor();
+                Handler handler = new Handler(Looper.getMainLooper());
+                executor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        // All your networking logic
-                        // should be here
+                        //Background work here
+                        for (int i =0;i<10000;i++)
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //UI Thread work here
+                                    pbSearch.setVisibility(View.INVISIBLE);
+                                }
+                            });
                     }
                 });
-                */
-                tvSearchRFidtitle = (TextView) root.findViewById(R.id.tvSearchRFidtitle);
-                tvRfidMetka = (TextView)  root.findViewById(R.id.tvRfidMetka);
-                BtClear= (Button)  root.findViewById(R.id.btClear);
                 BtClear.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
