@@ -51,4 +51,8 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void updateInfoBaraban(int Baraban, String FirstMetka, String SecondMetka){//функция для обработки привязки барабанов
+
+    }
 }

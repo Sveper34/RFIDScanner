@@ -44,8 +44,16 @@ public class SearchFragment extends Fragment {
         View root = binding.getRoot();
         tvSearchRFidtitle = (TextView) root.findViewById(R.id.tvSearchRFidtitle);
         tvRfidMetka = (TextView)  root.findViewById(R.id.tvRfidMetka);
-        BtClear= (Button)  root.findViewById(R.id.btClear);
+        BtClear= (Button)  root.findViewById(R.id.btClearSearch);
         pbSearch = (ProgressBar)  root.findViewById(R.id.loadingSearch);
+        BtClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvSearchRFidtitle.setText("");
+                tvRfidMetka.setText("");
+                BtClear.setVisibility(View.INVISIBLE);
+            }
+        });
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -57,7 +65,17 @@ public class SearchFragment extends Fragment {
                     @Override
                     public void run() {
                         //Background work here
-                        for (int i =0;i<10000;i++)
+                        String barcode = intent.getStringExtra("rfid_data");
+                        //Toast.makeText(MainActivity.this, barcode, Toast.LENGTH_SHORT).show();
+                        BtClear.setVisibility(View.VISIBLE);
+                        if (barcode.equals("ABCDEF0000001938\n")) {
+                            tvSearchRFidtitle.setText("318");
+                        }else {
+                            tvSearchRFidtitle.setText("");
+
+                        }
+                        tvRfidMetka.setText(barcode);
+                        //   tvNumberDate.setText(barcode);
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -67,25 +85,6 @@ public class SearchFragment extends Fragment {
                             });
                     }
                 });
-                BtClear.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        tvSearchRFidtitle.setText("");
-                        tvRfidMetka.setText("");
-                        BtClear.setVisibility(View.INVISIBLE);
-                    }
-                });
-                String barcode = intent.getStringExtra("rfid_data");
-                //Toast.makeText(MainActivity.this, barcode, Toast.LENGTH_SHORT).show();
-                BtClear.setVisibility(View.VISIBLE);
-                if (barcode.equals("ABCDEF0000001938\n")) {
-                    tvSearchRFidtitle.setText("318");
-                }else {
-                    tvSearchRFidtitle.setText("");
-
-                }
-                tvRfidMetka.setText(barcode);
-                //   tvNumberDate.setText(barcode);
             }
         };
         IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
