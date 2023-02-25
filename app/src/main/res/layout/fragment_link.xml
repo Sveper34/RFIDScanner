@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvSearchRFidtitle2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Link.LinkFragment">
 
     <EditText
-        android:id="@+id/tvRfidMetka2"
+        android:id="@+id/tvRfidMetkaLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -18,49 +19,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/tvRfidMetka3"
+        android:id="@+id/tvRfidMetkaLinkSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetka2"
-        tools:layout_editor_absoluteX="52dp" />
-
-    <EditText
-        android:id="@+id/tvSearchRFidtitle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetka3"
-        tools:layout_editor_absoluteX="52dp" />
+        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkSecondTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLink" />
 
     <TextView
         android:id="@+id/tvSearchtitle2"
         android:layout_width="73dp"
         android:layout_height="21dp"
-        android:text="Барабан"
-        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaTitle2"
-        tools:layout_editor_absoluteY="202dp" />
+        android:layout_marginTop="16dp"
+        android:text="@string/BarabanTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkSecond"
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLinkSecond" />
 
     <TextView
-        android:id="@+id/tvRfidMetkaTitle2"
+        android:id="@+id/tvRfidMetkaLinkTitle"
         android:layout_width="72dp"
         android:layout_height="20dp"
         android:layout_marginStart="52dp"
-        android:text="Метка"
+        android:layout_marginTop="36dp"
+        android:text="@string/Metka"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="36dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvRfidMetkaTitle3"
+        android:id="@+id/tvRfidMetkaLinkSecondTitle"
         android:layout_width="72dp"
         android:layout_height="20dp"
-        android:text="Метка"
-        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaTitle2"
-        tools:layout_editor_absoluteY="118dp" />
+        android:layout_marginTop="16dp"
+        android:text="@string/Metka"
+        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLink" />
 
     <ProgressBar
         android:id="@+id/loadingLink"
@@ -82,8 +76,8 @@
         android:text="@string/buttonClerar"
         android:textSize="15sp"
         app:icon="@drawable/ic_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="656dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/btSetLink"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btSetLink"
@@ -91,11 +85,21 @@
         android:layout_width="141dp"
         android:layout_height="43dp"
         android:layout_marginStart="32dp"
+        android:layout_marginBottom="36dp"
         android:text="@string/buttonLink"
         android:textSize="15sp"
         app:icon="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btClearLink"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="656dp" />
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="210dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="@+id/tvSearchtitle2"
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLinkSecond" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

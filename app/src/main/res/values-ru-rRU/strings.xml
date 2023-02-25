@@ -22,4 +22,6 @@
     <string name="login_failed">"Неудачный вход"</string>
     <string name="buttonClerar">Очистить</string>
     <string name="buttonLink">Привязать метки</string>
+    <string name="BarabanTitle">Baraban</string>
+    <string name="Metka">Metka</string>
 </resources>

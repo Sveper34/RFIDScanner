@@ -40,7 +40,7 @@
         android:layout_height="21dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="36dp"
-        android:text="Барабан"
+        android:text="@string/BarabanTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="64dp"
-        android:text="Метка"
+        android:text="@string/Metka"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle" />
 

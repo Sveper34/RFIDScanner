@@ -21,4 +21,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="buttonClerar">Clear all</string>
     <string name="buttonLink">Link</string>
+    <string name="BarabanTitle">Барабан</string>
+    <string name="Metka">Метка</string>
 </resources>
