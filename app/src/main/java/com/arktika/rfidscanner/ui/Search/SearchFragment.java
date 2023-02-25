@@ -54,6 +54,7 @@ public class SearchFragment extends Fragment {
                 BtClear.setVisibility(View.INVISIBLE);
             }
         });
+
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -64,6 +65,7 @@ public class SearchFragment extends Fragment {
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
+                        pbSearch.setVisibility(View.VISIBLE);
                         //Background work here
                         String barcode = intent.getStringExtra("rfid_data");
                         //Toast.makeText(MainActivity.this, barcode, Toast.LENGTH_SHORT).show();

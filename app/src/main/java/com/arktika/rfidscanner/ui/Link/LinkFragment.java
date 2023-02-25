@@ -28,7 +28,7 @@ public class LinkFragment extends Fragment {
 
     private FragmentLinkBinding binding;
     private BroadcastReceiver brRfid;
-    ProgressBar pbSearch;
+    ProgressBar pbLink;
     Button BtClear;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,17 +37,18 @@ public class LinkFragment extends Fragment {
 
         binding = FragmentLinkBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        pbLink = (ProgressBar)  root.findViewById(R.id.loadingSearch);
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                pbSearch.setVisibility(View.VISIBLE);
+                pbLink.setVisibility(View.VISIBLE);
                 BtClear= (Button)  root.findViewById(R.id.btClearLink);
                 ExecutorService executor = Executors.newSingleThreadExecutor();
                 Handler handler = new Handler(Looper.getMainLooper());
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
+                        pbLink.setVisibility(View.VISIBLE);
                         //Background work here
                         String barcode = intent.getStringExtra("rfid_data");
                         //Toast.makeText(MainActivity.this, barcode, Toast.LENGTH_SHORT).show();
@@ -64,7 +65,7 @@ public class LinkFragment extends Fragment {
                             @Override
                             public void run() {
                                 //UI Thread work here
-                                pbSearch.setVisibility(View.INVISIBLE);
+                                pbLink.setVisibility(View.INVISIBLE);
                             }
                         });
                     }
