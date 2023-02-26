@@ -14,6 +14,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="56dp"
         android:ems="10"
+        android:hint="Метка"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:ems="10"
+        android:hint="Метка"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkSecondTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLink" />
@@ -44,6 +46,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="36dp"
         android:text="@string/Metka"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,6 +56,7 @@
         android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:text="@string/Metka"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLink" />
 
