@@ -11,24 +11,21 @@
         android:id="@+id/tvRfidMetkaLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="56dp"
         android:ems="10"
         android:hint="Метка"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLinkTitle" />
 
     <EditText
         android:id="@+id/tvRfidMetkaLinkSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="Метка"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkSecondTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLink" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLinkSecondTitle" />
 
     <TextView
         android:id="@+id/tvSearchtitle2"
@@ -102,8 +99,7 @@
         android:id="@+id/spinner"
         android:layout_width="210dp"
         android:layout_height="46dp"
-        android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="@+id/tvSearchtitle2"
-        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLinkSecond" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
