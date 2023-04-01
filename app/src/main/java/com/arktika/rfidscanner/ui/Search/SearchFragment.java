@@ -24,9 +24,11 @@ import com.arktika.rfidscanner.MainActivity;
 import com.arktika.rfidscanner.R;
 import com.arktika.rfidscanner.databinding.FragmentSearchBinding;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -41,6 +43,8 @@ public class SearchFragment extends Fragment {
     TextView tvSearchRFidtitle;
     TextView tvRfidMetka;
     ProgressBar pbSearch;
+
+    JSONObject obj = new JSONObject();
     Button BtClear;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 tvSearchRFidtitle.setText("");
                 tvRfidMetka.setText("");
-                BtClear.setVisibility(View.INVISIBLE);
+                //BtClear.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -66,61 +70,52 @@ public class SearchFragment extends Fragment {
             @Override
             public void onReceive(Context context, Intent intent) {
                 pbSearch.setVisibility(View.VISIBLE);
-
                 ExecutorService executor = Executors.newSingleThreadExecutor();
                 Handler handler = new Handler(Looper.getMainLooper());
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        pbSearch.setVisibility(View.VISIBLE);
+                        //pbSearch.setVisibility(View.VISIBLE);
                         //Background work here
+//                            BtClear.setVisibility(View.VISIBLE);
                         String barcode = intent.getStringExtra("rfid_data");
-                        //Toast.makeText(MainActivity.this, barcode, Toast.LENGTH_SHORT).show();
-                        BtClear.setVisibility(View.VISIBLE);
-                        if (barcode.equals("ABCDEF0000001938\n")) {
-                            tvSearchRFidtitle.setText("318");
-                        }else {
-                            tvSearchRFidtitle.setText("");
-
-                        }
-                        tvRfidMetka.setText(barcode);
-                        //   tvNumberDate.setText(barcode);
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //блок обработки Бэкенда
-                                    String[] Result = new String[2];
-                                    try {
-                                        URL url = new URL ("https://testingfortestingpoltopl.ru/api/login.php");
-                                        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                                        con.setRequestMethod("POST");
-                                        con.setRequestProperty("Content-Type", "application/json; utf-8");
-                                        con.setRequestProperty("Accept", "application/json");
-                                        String jsonInputString = "{\"email\":\""+params[0]+"\", \"password\": \""+params[1]+"\"}";
-                                        //String jsonInputString = "{email:"+params[0]+",password: "+params[1]+"}";
-                                        try(OutputStream os = con.getOutputStream()) {
-                                            byte[] input = jsonInputString.getBytes("utf-8");
-                                            os.write(input, 0, input.length);
-                                        }
-                                        try(BufferedReader br = new BufferedReader(
-                                                new InputStreamReader(con.getInputStream(), "utf-8"))) {
-                                            StringBuilder response = new StringBuilder();
-                                            String responseLine = null;
-                                            while ((responseLine = br.readLine()) != null) {
-                                                response.append(responseLine.trim());
-                                            }
-                                            String json = response.toString();
-                                            JSONObject obj = new JSONObject(json);
-                                            Result[0]= obj.getString("bmu_id");
-                                            Result[1]= obj.getString("bmu_login");
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    //UI Thread work here
-                                    pbSearch.setVisibility(View.INVISIBLE);
+                        try {
+                            URL url = new URL ("http://ovis-15:5087/get-bar-by-rfid/6335"+barcode.replace("\n",""));
+                            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                            //System.out.println(HttpURLConnection);
+                            con.setRequestMethod("GET");
+                            con.setRequestProperty("Content-Type", "application/json; utf-8");
+                            con.setRequestProperty("Accept", "application/json");
+                            //          String jsonInputString = "{\"rfid\":\""+barcode+"\"}";
+                            //                                        try(OutputStream os = con.getOutputStream()) {
+                            //                                            byte[] input = jsonInputString.getBytes("utf-8");
+                            //                                            os.write(input, 0, input.length);
+                            //                                       }
+                            try(BufferedReader br = new BufferedReader(
+                                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                                StringBuilder response = new StringBuilder();
+                                String responseLine = null;
+                                while ((responseLine = br.readLine()) != null) {
+                                    response.append(responseLine.trim());
                                 }
-                            });
+                                obj = new JSONObject(response.toString());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvRfidMetka.setText(barcode);
+                                //UI Thread work here
+                                try {
+                                    if (!obj.isNull("UIN"))   tvSearchRFidtitle.setText(obj.getString("UIN"));
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                pbSearch.setVisibility(View.INVISIBLE);
+                            }
+                        });
                     }
                 });
             }
@@ -138,6 +133,13 @@ public class SearchFragment extends Fragment {
         getContext().unregisterReceiver(brRfid);
         super.onDestroyView();
         binding = null;
-
     }
+
+//    @Override
+//    public void onResume() {
+//        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
+//        //Context context = getContext();
+//        getContext().registerReceiver(brRfid, intFilt);
+//        super.onResume();
+//    }
 }
