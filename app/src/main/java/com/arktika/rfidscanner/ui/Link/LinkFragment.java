@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,9 @@ public class LinkFragment extends Fragment {
     private BroadcastReceiver brRfid;
     ProgressBar pbLink;
     Button BtClear;
+    ProgressBar pbSearch;
+    TextView tvLinkMetka;
+    TextView tvLinkMetkaSecond;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         linkViewModel linkViewModel =
@@ -37,39 +41,28 @@ public class LinkFragment extends Fragment {
 
         binding = FragmentLinkBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        pbLink = (ProgressBar)  root.findViewById(R.id.loadingSearch);
+        pbLink = (ProgressBar)  root.findViewById(R.id.loadingLink);
+        tvLinkMetka = (TextView) root.findViewById(R.id.tvSearchRFidtitle);
+       // tvRfidMetka = (TextView)  root.findViewById(R.id.tvRfidMetka);
+        BtClear= (Button)  root.findViewById(R.id.btClearLink);
+        pbSearch = (ProgressBar)  root.findViewById(R.id.loadingLink);
+        BtClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvLinkMetka.setText("");
+                tvLinkMetkaSecond.setText("");
+                //BtClear.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 pbLink.setVisibility(View.VISIBLE);
-                BtClear= (Button)  root.findViewById(R.id.btClearLink);
-                ExecutorService executor = Executors.newSingleThreadExecutor();
-                Handler handler = new Handler(Looper.getMainLooper());
-                executor.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        pbLink.setVisibility(View.VISIBLE);
-                        //Background work here
-                        String barcode = intent.getStringExtra("rfid_data");
-                        //Toast.makeText(MainActivity.this, barcode, Toast.LENGTH_SHORT).show();
-                        BtClear.setVisibility(View.VISIBLE);
-                        if (barcode.equals("ABCDEF0000001938\n")) {
-                           // tvSearchRFidtitle.setText("318");
-                        }else {
-                            //tvSearchRFidtitle.setText("");
+                //BtClear= (Button)  root.findViewById(R.id.btClearLink);
 
-                        }
-                        //tvRfidMetka.setText(barcode);
-                        //   tvNumberDate.setText(barcode);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                //UI Thread work here
-                                pbLink.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                    }
-                });
             }
         };
         IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
