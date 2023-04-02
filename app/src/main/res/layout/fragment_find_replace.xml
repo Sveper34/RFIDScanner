@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaSearchReplaceSecond" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerFindReplace"
         android:layout_width="210dp"
         android:layout_height="46dp"
         app:layout_constraintStart_toStartOf="@+id/tvSearchtitle3"
@@ -68,28 +68,27 @@
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="141dp"
         android:layout_height="43dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="36dp"
         android:text="@string/buttonClerar"
         android:textSize="15sp"
         app:icon="@drawable/ic_delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btSetLinkFindReplace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btSetLinkFindReplace" />
 
     <Button
         android:id="@+id/btSetLinkFindReplace"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="141dp"
         android:layout_height="43dp"
+        android:layout_marginBottom="36dp"
         android:text="@string/buttonLink"
         android:textSize="15sp"
         app:icon="@drawable/ic_delete"
-        app:layout_constraintBottom_toBottomOf="@+id/btClearFindReplace"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btClearFindReplace"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btClearFindReplace"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/loadingFindReplace"
