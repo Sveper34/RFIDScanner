@@ -24,6 +24,7 @@ import com.arktika.rfidscanner.R;
 import com.arktika.rfidscanner.databinding.FragmentLinkBinding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LinkFragment extends Fragment {
@@ -51,6 +52,15 @@ public class LinkFragment extends Fragment {
         BtClear= (Button)  root.findViewById(R.id.btClearLink);
         pbLink = (ProgressBar)  root.findViewById(R.id.loadingLink);
         spinnerLink= (Spinner) root.findViewById(R.id.spinnerLink);
+        List<String> spinnerArray =  new ArrayList<String>();
+        //spinnerArray.add("item1");
+        //spinnerArray.add("item2");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item, spinnerArray);
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerLink.setAdapter(dataAdapter);
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
