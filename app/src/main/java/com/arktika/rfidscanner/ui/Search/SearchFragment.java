@@ -122,16 +122,31 @@ public class SearchFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        getContext().unregisterReceiver(brRfid);
+        try {
+            getContext().unregisterReceiver(brRfid);
+        } catch(IllegalArgumentException e) {
+            e.printStackTrace();
+        }
         super.onDestroyView();
         binding = null;
     }
 
-//    @Override
-//    public void onResume() {
-//        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
-//        //Context context = getContext();
-//        getContext().registerReceiver(brRfid, intFilt);
-//        super.onResume();
-//    }
+    @Override
+    public void onResume() {
+        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
+        //Context context = getContext();
+        getContext().registerReceiver(brRfid, intFilt);
+        super.onResume();
+    }
+    @Override
+    public void onPause() {
+        try {
+            getContext().unregisterReceiver(brRfid);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+        super.onPause();
+        binding = null;
+    }
 }

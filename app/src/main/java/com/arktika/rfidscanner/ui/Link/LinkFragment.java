@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,8 +23,8 @@ import com.arktika.rfidscanner.MainActivity;
 import com.arktika.rfidscanner.R;
 import com.arktika.rfidscanner.databinding.FragmentLinkBinding;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LinkFragment extends Fragment {
 
@@ -31,9 +32,12 @@ public class LinkFragment extends Fragment {
     private BroadcastReceiver brRfid;
     ProgressBar pbLink;
     Button BtClear;
-    ProgressBar pbSearch;
+    Button BtLink;
     TextView tvLinkMetka;
     TextView tvLinkMetkaSecond;
+    Spinner spinnerLink;
+    String barcode;
+    int metka_rfid_count=0;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         linkViewModel linkViewModel =
@@ -42,10 +46,31 @@ public class LinkFragment extends Fragment {
         binding = FragmentLinkBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         pbLink = (ProgressBar)  root.findViewById(R.id.loadingLink);
-        tvLinkMetka = (TextView) root.findViewById(R.id.tvSearchRFidtitle);
-       // tvRfidMetka = (TextView)  root.findViewById(R.id.tvRfidMetka);
+        tvLinkMetka = (TextView) root.findViewById(R.id.tvRfidMetkaLink);
+        tvLinkMetkaSecond = (TextView) root.findViewById(R.id.tvRfidMetkaLinkSecond);
         BtClear= (Button)  root.findViewById(R.id.btClearLink);
-        pbSearch = (ProgressBar)  root.findViewById(R.id.loadingLink);
+        pbLink = (ProgressBar)  root.findViewById(R.id.loadingLink);
+        spinnerLink= (Spinner) root.findViewById(R.id.spinnerLink);
+        brRfid = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                 barcode = intent.getStringExtra("rfid_data");
+                 if(metka_rfid_count==0){
+                     tvLinkMetka.setText(barcode);
+                     metka_rfid_count=1;
+                 }
+                 else
+                 {
+                     tvLinkMetkaSecond.setText(barcode);
+                     metka_rfid_count=0;
+                 }
+            }
+        };
+
+        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
+        //Context context = getContext();
+        getContext().registerReceiver(brRfid, intFilt);
+
         BtClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,28 +79,45 @@ public class LinkFragment extends Fragment {
                 //BtClear.setVisibility(View.INVISIBLE);
             }
         });
-
-
-
-        brRfid = new BroadcastReceiver() {
+        BtLink= (Button)  root.findViewById(R.id.btSetLink);
+        BtLink.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onReceive(Context context, Intent intent) {
-                pbLink.setVisibility(View.VISIBLE);
-                //BtClear= (Button)  root.findViewById(R.id.btClearLink);
-
+            public void onClick(View view) {
+            //бэк
             }
-        };
-        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
-        //Context context = getContext();
-        getContext().registerReceiver(brRfid, intFilt);
-
+        });
         return root;
     }
 
     @Override
     public void onDestroyView() {
-        getContext().unregisterReceiver(brRfid);
+        try {
+            getContext().unregisterReceiver(brRfid);
+        } catch(IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
         super.onDestroyView();
+        binding = null;
+    }
+
+    @Override
+    public void onResume() {
+        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
+        //Context context = getContext();
+        getContext().registerReceiver(brRfid, intFilt);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        try {
+            getContext().unregisterReceiver(brRfid);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+        super.onPause();
         binding = null;
     }
 }

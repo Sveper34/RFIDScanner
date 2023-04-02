@@ -21,7 +21,7 @@
     <string name="invalid_password">Пароль должен быть более 5 символов</string>
     <string name="login_failed">"Неудачный вход"</string>
     <string name="buttonClerar">Очистить</string>
-    <string name="buttonLink">Привязать метки</string>
+    <string name="buttonLink">Привязать</string>
     <string name="BarabanTitle">Барабан</string>
     <string name="Metka">Метка</string>
 </resources>

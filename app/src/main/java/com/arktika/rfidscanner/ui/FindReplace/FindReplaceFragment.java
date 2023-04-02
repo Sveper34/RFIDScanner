@@ -8,14 +8,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.arktika.rfidscanner.MainActivity;
+import com.arktika.rfidscanner.R;
 import com.arktika.rfidscanner.databinding.FragmentFindReplaceBinding;
 
-public class FindReplaceFragment extends Fragment {
+import org.w3c.dom.Text;
 
+public class FindReplaceFragment extends Fragment {
+    String barcode;
+    int metka_rfid_count=0;
+    TextView tvRfidMetkaSearchReplace;
+    TextView tvRfidMetkaSearchReplaceSecond;
     private FragmentFindReplaceBinding binding;
     private BroadcastReceiver brRfid;//Прием широковешательных сообщений от сканирование штрихкода
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -25,46 +33,21 @@ public class FindReplaceFragment extends Fragment {
 
         binding = FragmentFindReplaceBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        tvRfidMetkaSearchReplace = root.findViewById(R.id.tvRfidMetkaSearchReplace);;
+        tvRfidMetkaSearchReplaceSecond = root.findViewById(R.id.tvRfidMetkaSearchReplaceSecond);;
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-//                pbSearch.setVisibility(View.VISIBLE);
-//
-//                ExecutorService executor = Executors.newSingleThreadExecutor();
-//                Handler handler = new Handler(Looper.getMainLooper());
-//                executor.execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        //Background work here
-//                        for (int i =0;i<10000;i++)
-//                            handler.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    //UI Thread work here
-//                                    pbSearch.setVisibility(View.INVISIBLE);
-//                                }
-//                            });
-//                    }
-//                });
-//                BtClear.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        tvSearchRFidtitle.setText("");
-//                        tvRfidMetka.setText("");
-//                        BtClear.setVisibility(View.INVISIBLE);
-//                    }
-//                });
-//                String barcode = intent.getStringExtra("rfid_data");
-//                //Toast.makeText(MainActivity.this, barcode, Toast.LENGTH_SHORT).show();
-//                BtClear.setVisibility(View.VISIBLE);
-//                if (barcode.equals("ABCDEF0000001938\n")) {
-//                    tvSearchRFidtitle.setText("318");
-//                }else {
-//                    tvSearchRFidtitle.setText("");
-//
-//                }
-//                tvRfidMetka.setText(barcode);
-                //   tvNumberDate.setText(barcode);
+                barcode = intent.getStringExtra("rfid_data");
+                if(metka_rfid_count==0){
+                    tvRfidMetkaSearchReplace.setText(barcode);
+                    metka_rfid_count=1;
+                }
+                else
+                {
+                    tvRfidMetkaSearchReplaceSecond.setText(barcode);
+                    metka_rfid_count=0;
+                }
             }
         };
         IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
@@ -74,7 +57,34 @@ public class FindReplaceFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        try {
+            getContext().unregisterReceiver(brRfid);
+        } catch(IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
         super.onDestroyView();
+        binding = null;
+    }
+
+
+    @Override
+    public void onResume() {
+        IntentFilter intFilt = new IntentFilter(MainActivity.BROADCAST_ACTION);
+        //Context context = getContext();
+        getContext().registerReceiver(brRfid, intFilt);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        try {
+            getContext().unregisterReceiver(brRfid);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+        super.onPause();
         binding = null;
     }
 }
