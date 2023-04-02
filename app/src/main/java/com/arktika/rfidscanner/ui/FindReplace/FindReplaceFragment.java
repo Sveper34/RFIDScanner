@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,8 @@ public class FindReplaceFragment extends Fragment {
     int metka_rfid_count=0;
     TextView tvRfidMetkaSearchReplace;
     TextView tvRfidMetkaSearchReplaceSecond;
+    Button BtClear;
+    Button BtLink;
     private FragmentFindReplaceBinding binding;
     private BroadcastReceiver brRfid;//Прием широковешательных сообщений от сканирование штрихкода
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,7 +37,16 @@ public class FindReplaceFragment extends Fragment {
         binding = FragmentFindReplaceBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         tvRfidMetkaSearchReplace = root.findViewById(R.id.tvRfidMetkaSearchReplace);;
-        tvRfidMetkaSearchReplaceSecond = root.findViewById(R.id.tvRfidMetkaSearchReplaceSecond);;
+        tvRfidMetkaSearchReplaceSecond = root.findViewById(R.id.tvRfidMetkaSearchReplaceSecond);
+        BtLink = (Button)  root.findViewById(R.id.btSetLinkFindReplace);
+        BtClear= (Button)  root.findViewById(R.id.btClearFindReplace);
+        BtClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvRfidMetkaSearchReplace.setText("");
+                tvRfidMetkaSearchReplaceSecond.setText("");
+            }
+        });
         brRfid = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
