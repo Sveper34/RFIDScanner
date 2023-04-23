@@ -10,7 +10,6 @@ public class FindReplaceViewModel extends ViewModel {
 
     public FindReplaceViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {

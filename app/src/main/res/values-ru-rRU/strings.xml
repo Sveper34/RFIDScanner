@@ -24,4 +24,8 @@
     <string name="buttonLink">Привязать</string>
     <string name="BarabanTitle">Барабан</string>
     <string name="Metka">Метка</string>
+    <string name="SuccessfullRequest">Данные успешно привязаны</string>
+    <string name="BadRequest">Привязать данные не удалось</string>
+    <string name="ErorrNotAllFill">Все поля должны быть заполнены!</string>
+    <string name="NetworkError">WIFI соединение не установлено!</string>
 </resources>

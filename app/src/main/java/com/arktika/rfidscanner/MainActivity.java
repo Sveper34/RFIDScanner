@@ -1,5 +1,7 @@
 package com.arktika.rfidscanner;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import com.google.android.material.navigation.NavigationView;
@@ -14,6 +16,7 @@ import com.arktika.rfidscanner.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     public final static String BROADCAST_ACTION = "com.ubx.scan.rfid";//Широковешательное сообщение для сканера Urovo dt50
+    public final static String API_URL = "https://rfid-api.spoarktika.ru/";//Широковешательное сообщение для сканера Urovo dt50
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     @Override
@@ -27,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_search, R.id.nav_find_replace_rfid, R.id.nav_link_rfid)
                 .setOpenableLayout(drawer)
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -50,9 +50,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public void updateInfoBaraban(int Baraban, String FirstMetka, String SecondMetka){//функция для обработки привязки барабанов
-
     }
 }

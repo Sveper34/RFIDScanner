@@ -23,4 +23,8 @@
     <string name="buttonLink">Link</string>
     <string name="BarabanTitle">Барабан</string>
     <string name="Metka">Метка</string>
+    <string name="SuccessfullRequest">Successfull Request</string>
+    <string name="BadRequest">Bad Request</string>
+    <string name="ErorrNotAllFill">All fields as used!</string>
+    <string name="NetworkError">WIFI connection is off!</string>
 </resources>

@@ -13,11 +13,11 @@
         android:ems="10"
         android:hint="Метка"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaSearchReplaceTitle2"
-        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaSearchReplaceTitle2" />
+        app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaSearchReplaceTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaSearchReplaceTitle" />
 
     <TextView
-        android:id="@+id/tvRfidMetkaSearchReplaceTitle2"
+        android:id="@+id/tvRfidMetkaSearchReplaceTitle"
         android:layout_width="72dp"
         android:layout_height="20dp"
         android:layout_marginStart="52dp"
@@ -46,10 +46,11 @@
         app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaSearchReplaceSecond"
         app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaSearchReplaceSecond" />
 
-    <Spinner
+    <EditText
         android:id="@+id/spinnerFindReplace"
         android:layout_width="210dp"
         android:layout_height="46dp"
+        android:spinnerMode="dialog"
         app:layout_constraintStart_toStartOf="@+id/tvSearchtitle3"
         app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle3" />
 
@@ -66,7 +67,7 @@
     <Button
         android:id="@+id/btClearFindReplace"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="141dp"
+        android:layout_width="160dp"
         android:layout_height="43dp"
         android:text="@string/buttonClerar"
         android:textSize="15sp"
@@ -79,12 +80,12 @@
     <Button
         android:id="@+id/btSetLinkFindReplace"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="141dp"
+        android:layout_width="160dp"
         android:layout_height="43dp"
         android:layout_marginBottom="36dp"
         android:text="@string/buttonLink"
         android:textSize="15sp"
-        app:icon="@drawable/ic_delete"
+        app:icon="@drawable/ic_link_rfid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btClearFindReplace"
         app:layout_constraintHorizontal_bias="0.5"
@@ -100,4 +101,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvclickfindReplace"
+        android:layout_width="210dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerFindReplace"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerFindReplace" />
 </androidx.constraintlayout.widget.ConstraintLayout>

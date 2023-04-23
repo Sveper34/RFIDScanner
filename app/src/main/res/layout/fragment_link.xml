@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tvSearchRFidtitle2"
+    android:id="@+id/FragmentLink"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Link.LinkFragment">
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Метка"
+        android:hint="@string/Metka"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLinkTitle" />
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Метка"
+        android:hint="@string/Metka"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/tvRfidMetkaLinkSecondTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvRfidMetkaLinkSecondTitle" />
@@ -71,10 +71,10 @@
     <Button
         android:id="@+id/btClearLink"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="141dp"
+        android:layout_width="160dp"
         android:layout_height="43dp"
         android:text="@string/buttonClerar"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:icon="@drawable/ic_delete"
         app:layout_constraintBottom_toBottomOf="@+id/btSetLink"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,22 +84,39 @@
     <Button
         android:id="@+id/btSetLink"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="141dp"
+        android:layout_width="160dp"
         android:layout_height="43dp"
         android:layout_marginBottom="36dp"
         android:text="@string/buttonLink"
-        android:textSize="15sp"
-        app:icon="@drawable/ic_delete"
+        android:textSize="14sp"
+        app:icon="@drawable/ic_link_rfid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btClearLink"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
+    <!-- <Spinner
+       android:id="@+id/spinnerLink"
+       android:layout_width="210dp"
+       android:layout_height="46dp"
+       android:spinnerMode="dialog"
+      app:layout_constraintStart_toStartOf="@+id/tvSearchtitle2"
+       app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle2" />
+        -->
+    <EditText
         android:id="@+id/spinnerLink"
         android:layout_width="210dp"
         android:layout_height="46dp"
+        android:ems="10"
+        android:enabled="true"
         app:layout_constraintStart_toStartOf="@+id/tvSearchtitle2"
         app:layout_constraintTop_toBottomOf="@+id/tvSearchtitle2" />
+
+    <TextView
+        android:id="@+id/tvclick"
+        android:layout_width="210dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerLink"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerLink" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
